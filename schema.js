@@ -44,6 +44,10 @@ function getManyHumanByIds(ids) {
   return ids.map(getHumanById);
 }
 
+function canSeeFriends(viewerId, humanId) {
+  return viewerId === humanId;
+}
+
 const Resolvers = {
   Query: {
     human(_, { id }) {
@@ -57,7 +61,10 @@ const Resolvers = {
     name(human) {
       return human.name;
     },
-    friends(human) {
+    friends(human, __, ctx) {
+      if (!canSeeFriends(ctx.state.user.id, human.id)) {
+        throw new Error(`You cannot see this person's friends`);
+      }
       return getManyHumanByIds(human.friendIds);
     },
   },

@@ -8,7 +8,10 @@ const app = new koa();
 const router = new koaRouter();
 const PORT = 3000;
 
-router.post('/graphql', koaBody(), graphqlKoa({ schema: graphqlSchema }));
+router.post('/graphql', koaBody(), async (ctx) => {
+  ctx.state.user = { id: '1', name: 'Anakin Skywalker' };
+  return graphqlKoa({ schema: graphqlSchema, context: ctx })(ctx, null);
+});
 router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' }));
 
 app.use(router.routes());
