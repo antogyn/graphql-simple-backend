@@ -1,0 +1,21 @@
+{
+  "name": "graphql-simple-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-server-koa": "false1.3.0",
+    "graphql-tools": "false2.12.0",
+    "koa": "false2.4.1",
+    "koa-bodyparser": "false4.2.0",
+    "koa-router": "false7.3.0"
+  },
+  "devDependencies": {
+    "@playlyfe/gql": "false2.4.0"
+  }
+}
